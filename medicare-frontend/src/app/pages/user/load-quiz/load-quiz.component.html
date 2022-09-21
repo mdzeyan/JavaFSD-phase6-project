@@ -1,0 +1,53 @@
+
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <h1 class="mt20">Available Products</h1>
+    <div class="row mt20" *ngIf="quizzes">
+      <div class="col-md-4" *ngFor="let q of quizzes">
+        <mat-card class="mb20">
+          <mat-card-header>
+            <!-- <img src="../../../assets/img/medicine-logo.png"> -->
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>
+              {{ q.name }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ q.category.categoryName }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="truncate">{{ q.description }}</p>
+          </mat-card-content>
+          <mat-card-action>
+            <!-- <button mat-button color="primary">View</button> -->
+            <button
+              mat-button
+              color="accent"
+              [routerLink]="'/user-dashboard/add-cart/' + q.id"
+              class="ml10"
+            >
+            <mat-icon mat-list-icon>shopping_cart</mat-icon>Add To Cart 
+            </button>
+            
+            Price :{{ q.unitPrice }}
+
+            <!-- <button mat-button color="accent" [routerLink]="'/user-dashboard/instructions/' + q.id">
+            <mat-icon mat-list-icon>shopping_cart</mat-icon>Add To Cart<hr> 
+             Price :{{ q.unitPrice }} 
+            </button> -->
+            
+            <!-- <button mat-button color="accent">Unit Stock :{{ q.unitsInStock }}</button> -->
+          </mat-card-action>
+        </mat-card>
+      </div>
+
+      <div class="col-md-12" *ngIf="quizzes.length == 0">
+        <mat-card>
+          <mat-card-content>
+            <h1>No data in this category</h1>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
